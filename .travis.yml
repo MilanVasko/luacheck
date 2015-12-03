@@ -11,11 +11,16 @@ before_install:
   - bash .travis_setup_rocks.sh
 
 install:
-  - sudo luarocks make rockspecs/luacheck-scm-9.rockspec
-  - sudo luarocks install busted
+  - sudo luarocks make
 
 script:
   - busted spec
+  - luacheck luacheck-scm-1.rockspec -j2
   - sudo luarocks remove luafilesystem --force
-  - luacheck rockspecs/luacheck-scm-9.rockspec
-  - luacheck src | grep 'I/O error'
+  - sudo luarocks remove lanes --force
+  - sudo luarocks remove luacheck --force
+  - lua install.lua path/to/luacheck
+  - rm -r bin src
+  - path/to/luacheck/bin/luacheck spec/*.lua
+  - path/to/luacheck/bin/luacheck src | grep 'I/O error'
+  - path/to/luacheck/bin/luacheck --version | grep 'Not found'
