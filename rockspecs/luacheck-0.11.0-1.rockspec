@@ -1,17 +1,9 @@
--- This file was automatically generated for the LuaDist project.
-
 package = "luacheck"
-version = "0.10.0-1"
--- LuaDist source
+version = "0.11.0-1"
 source = {
-  tag = "0.10.0-1",
-  url = "git://github.com/LuaDist2/luacheck.git"
+   url = "git://github.com/mpeterv/luacheck",
+   tag = "0.11.0"
 }
--- Original source
--- source = {
---    url = "git://github.com/mpeterv/luacheck",
---    tag = "0.10.0"
--- }
 description = {
    summary = "A static analyzer and a linter for Lua",
    detailed = [[
@@ -28,6 +20,8 @@ build = {
    type = "builtin",
    modules = {
       luacheck = "src/luacheck/init.lua",
+      ["luacheck.main"] = "src/luacheck/main.lua",
+      ["luacheck.config"] = "src/luacheck/config.lua",
       ["luacheck.linearize"] = "src/luacheck/linearize.lua",
       ["luacheck.analyze"] = "src/luacheck/analyze.lua",
       ["luacheck.reachability"] = "src/luacheck/reachability.lua",
@@ -45,6 +39,7 @@ build = {
       ["luacheck.format"] = "src/luacheck/format.lua",
       ["luacheck.version"] = "src/luacheck/version.lua",
       ["luacheck.fs"] = "src/luacheck/fs.lua",
+      ["luacheck.globbing"] = "src/luacheck/globbing.lua",
       ["luacheck.utils"] = "src/luacheck/utils.lua",
       ["luacheck.argparse"] = "src/luacheck/argparse.lua"
    },
