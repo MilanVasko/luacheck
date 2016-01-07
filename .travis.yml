@@ -1,20 +1,31 @@
-language: python
+language: c
 sudo: false
 
-env:
-  - LUA="lua=5.1"
-  - LUA="lua=5.2"
-  - LUA="lua=5.3"
-  - LUA="luajit=2.0"
+cache:
+  directories: cache
+
+matrix:
+  include:
+    - compiler: ": Lua51"
+      env: LUA="lua 5.1"
+    - compiler: ": Lua52"
+      env: LUA="lua 5.2"
+    - compiler: ": Lua53"
+      env: LUA="lua 5.3"
+    - compiler: ": LuaJIT20"
+      env: LUA="luajit 2.0"
+    - compiler: ": LuaJIT21"
+      env: LUA="luajit 2.1"
 
 before_install:
-  - pip install hererocks
-  - hererocks here -r^ --$LUA
+  - wget https://raw.githubusercontent.com/mpeterv/hererocks/0.3.1/hererocks.py
+  - python hererocks.py here --$LUA -r^ --downloads cache --builds cache --no-git-cache
   - export PATH=$PATH:$PWD/here/bin
-  - bash .travis_deps.sh
+  - luarocks install lanes
+  - luarocks install busted
+  - luarocks install luacov
 
-install:
-  - luarocks make
+install: luarocks make
 
 script:
   - busted -c
@@ -27,6 +38,8 @@ script:
   - lua install.lua path/to/luacheck
   - mv src src2
   - path/to/luacheck/bin/luacheck spec/*.lua
-  - luarocks install luacov-coveralls
   - mv src2 src
+
+after_success:
+  - luarocks install luacov-coveralls
   - luacov-coveralls -v
