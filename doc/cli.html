@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Command line interface &mdash; luacheck 0.17.1 documentation</title>
+  <title>Command line interface &mdash; luacheck 0.18.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.17.1 documentation" href="index.html"/>
+    <link rel="top" title="luacheck 0.18.0 documentation" href="index.html"/>
         <link rel="next" title="Configuration file" href="config.html"/>
         <link rel="prev" title="List of warnings" href="warnings.html"/> 
 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.17.1
+                0.18.0
               </div>
             
           
@@ -181,7 +181,13 @@ Checking src/unused_code.lua                      9 warnings
 Total: 14 warnings / 1 error in 4 files
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">luacheck</span></code> exits with 0 if no warnings or errors occurred and with a positive number otherwise.</p>
+<p><code class="docutils literal"><span class="pre">luacheck</span></code> chooses exit code as follows:</p>
+<ul class="simple">
+<li>Exit code is <code class="docutils literal"><span class="pre">0</span></code> if no warnings or errors occurred.</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">1</span></code> if some warnings or syntax errors occured.</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">2</span></code> if some files couldn&#8217;t be checked, typically due to an incorrect file name.</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">3</span></code> if there was a critical error (invalid CLI arguments, config, or cache file).</li>
+</ul>
 <div class="section" id="command-line-options">
 <span id="cliopts"></span><h2>Command line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">¶</a></h2>
 <p>Short options that do not take an argument can be combined into one, so that <code class="docutils literal"><span class="pre">-qqu</span></code> is equivalent to <code class="docutils literal"><span class="pre">-q</span> <span class="pre">-q</span> <span class="pre">-u</span></code>. For long options, both <code class="docutils literal"><span class="pre">--option</span> <span class="pre">value</span></code> or <code class="docutils literal"><span class="pre">--option=value</span></code> can be used.</p>
@@ -250,63 +256,66 @@ Total: 14 warnings / 1 error in 4 files
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">--new-read-globals</span> <span class="pre">[&lt;global&gt;]</span> <span class="pre">...</span></code></td>
 <td>Set read-only globals. Removes read-only globals added previously.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-c</span> <span class="pre">|</span> <span class="pre">--compat</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--not-globals</span> <span class="pre">[&lt;global&gt;]</span> <span class="pre">...</span></code></td>
+<td>Remove custom and standard globals.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">-c</span> <span class="pre">|</span> <span class="pre">--compat</span></code></td>
 <td>Equivalent to <code class="docutils literal"><span class="pre">--std</span> <span class="pre">max</span></code>.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-d</span> <span class="pre">|</span> <span class="pre">--allow-defined</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-d</span> <span class="pre">|</span> <span class="pre">--allow-defined</span></code></td>
 <td><p class="first">Allow defining globals implicitly by setting them.</p>
 <p class="last">See <a class="reference internal" href="warnings.html#implicitlydefinedglobals"><span class="std std-ref">Implicitly defined globals</span></a></p>
 </td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-t</span> <span class="pre">|</span> <span class="pre">--allow-defined-top</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">-t</span> <span class="pre">|</span> <span class="pre">--allow-defined-top</span></code></td>
 <td><p class="first">Allow defining globals implicitly by setting them in the top level scope.</p>
 <p class="last">See <a class="reference internal" href="warnings.html#implicitlydefinedglobals"><span class="std std-ref">Implicitly defined globals</span></a></p>
 </td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-m</span> <span class="pre">|</span> <span class="pre">--module</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-m</span> <span class="pre">|</span> <span class="pre">--module</span></code></td>
 <td><p class="first">Limit visibility of implicitly defined globals to their files.</p>
 <p class="last">See <a class="reference internal" href="warnings.html#modules"><span class="std std-ref">Modules</span></a></p>
 </td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--ignore</span> <span class="pre">|</span> <span class="pre">-i</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--ignore</span> <span class="pre">|</span> <span class="pre">-i</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
 <td>Filter out warnings matching patterns.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--enable</span> <span class="pre">|</span> <span class="pre">-e</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--enable</span> <span class="pre">|</span> <span class="pre">-e</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
 <td>Do not filter out warnings matching patterns.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--only</span> <span class="pre">|</span> <span class="pre">-o</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--only</span> <span class="pre">|</span> <span class="pre">-o</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
 <td>Filter out warnings not matching patterns.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--no-inline</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-inline</span></code></td>
 <td>Disable inline options.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--config</span> <span class="pre">&lt;config&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--config</span> <span class="pre">&lt;config&gt;</span></code></td>
 <td>Path to custom configuration file (default: <code class="docutils literal"><span class="pre">.luacheckrc</span></code>).</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--no-config</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-config</span></code></td>
 <td>Do not look up custom configuration file.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--filename</span> <span class="pre">&lt;filename&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--filename</span> <span class="pre">&lt;filename&gt;</span></code></td>
 <td>Use another filename in output, for selecting
 configuration overrides and for file filtering.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--exclude-files</span> <span class="pre">&lt;glob&gt;</span> <span class="pre">[&lt;glob&gt;]</span> <span class="pre">...</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--exclude-files</span> <span class="pre">&lt;glob&gt;</span> <span class="pre">[&lt;glob&gt;]</span> <span class="pre">...</span></code></td>
 <td>Do not check files matching these globbing patterns. Recursive globs such as <code class="docutils literal"><span class="pre">**/*.lua</span></code> are supported.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--include-files</span> <span class="pre">&lt;glob&gt;</span> <span class="pre">[&lt;glob&gt;]</span> <span class="pre">...</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--include-files</span> <span class="pre">&lt;glob&gt;</span> <span class="pre">[&lt;glob&gt;]</span> <span class="pre">...</span></code></td>
 <td>Do not check files not matching these globbing patterns.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--cache</span> <span class="pre">[&lt;cache&gt;]</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--cache</span> <span class="pre">[&lt;cache&gt;]</span></code></td>
 <td>Path to cache file. (default: <code class="docutils literal"><span class="pre">.luacheckcache</span></code>). See <a class="reference internal" href="#cache"><span class="std std-ref">Caching</span></a></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-cache</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--no-cache</span></code></td>
 <td>Do not use cache.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-j</span> <span class="pre">|</span> <span class="pre">--jobs</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-j</span> <span class="pre">|</span> <span class="pre">--jobs</span></code></td>
 <td>Check <code class="docutils literal"><span class="pre">&lt;jobs&gt;</span></code> files in parallel. Requires <a class="reference external" href="http://cmr.github.io/lanes/">LuaLanes</a>.
 Default number of jobs is set to number of available processing units.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--formatter</span> <span class="pre">&lt;formatter&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--formatter</span> <span class="pre">&lt;formatter&gt;</span></code></td>
 <td><p class="first">Use custom formatter. <code class="docutils literal"><span class="pre">&lt;formatter&gt;</span></code> must be a module name or one of:</p>
 <ul class="last simple">
 <li><code class="docutils literal"><span class="pre">TAP</span></code> - Test Anything Protocol formatter;</li>
@@ -316,7 +325,7 @@ Default number of jobs is set to number of available processing units.</td>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-q</span> <span class="pre">|</span> <span class="pre">--quiet</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-q</span> <span class="pre">|</span> <span class="pre">--quiet</span></code></td>
 <td><p class="first">Suppress report output for files without warnings.</p>
 <ul class="last simple">
 <li><code class="docutils literal"><span class="pre">-qq</span></code> - Suppress output of warnings.</li>
@@ -324,19 +333,19 @@ Default number of jobs is set to number of available processing units.</td>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--codes</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--codes</span></code></td>
 <td>Show warning codes.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--ranges</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--ranges</span></code></td>
 <td>Show ranges of columns related to warnings.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-color</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--no-color</span></code></td>
 <td>Do not colorize output.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-v</span> <span class="pre">|</span> <span class="pre">--version</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-v</span> <span class="pre">|</span> <span class="pre">--version</span></code></td>
 <td>Show version of Luacheck and its dependencies and exit.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-h</span> <span class="pre">|</span> <span class="pre">--help</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">-h</span> <span class="pre">|</span> <span class="pre">--help</span></code></td>
 <td>Show help and exit.</td>
 </tr>
 </tbody>
@@ -415,7 +424,7 @@ Default number of jobs is set to number of available processing units.</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014 - 2016, Peter Melnichenko.
+        &copy; Copyright 2014 - 2017, Peter Melnichenko.
 
     </p>
   </div>
@@ -437,7 +446,7 @@ Default number of jobs is set to number of available processing units.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.17.1',
+            VERSION:'0.18.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

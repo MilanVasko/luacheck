@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration file &mdash; luacheck 0.17.1 documentation</title>
+  <title>Configuration file &mdash; luacheck 0.18.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.17.1 documentation" href="index.html"/>
+    <link rel="top" title="luacheck 0.18.0 documentation" href="index.html"/>
         <link rel="next" title="Inline options" href="inline.html"/>
         <link rel="prev" title="Command line interface" href="cli.html"/> 
 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.17.1
+                0.18.0
               </div>
             
           
@@ -230,35 +230,39 @@
 <td>Array of strings</td>
 <td>(Do not overwrite)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">compat</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">not_globals</span></code></td>
+<td>Array of strings</td>
+<td><code class="docutils literal"><span class="pre">{}</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">compat</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">allow_defined</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">allow_defined</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">allow_defined_top</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">allow_defined_top</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">module</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">module</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ignore</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ignore</span></code></td>
 <td>Array of patterns (see <a class="reference internal" href="cli.html#patterns"><span class="std std-ref">Patterns</span></a>)</td>
 <td><code class="docutils literal"><span class="pre">{}</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">enable</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">enable</span></code></td>
 <td>Array of patterns</td>
 <td><code class="docutils literal"><span class="pre">{}</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">only</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">only</span></code></td>
 <td>Array of patterns</td>
 <td>(Do not filter)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">inline</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">inline</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">true</span></code></td>
 </tr>
@@ -361,7 +365,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014 - 2016, Peter Melnichenko.
+        &copy; Copyright 2014 - 2017, Peter Melnichenko.
 
     </p>
   </div>
@@ -383,7 +387,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.17.1',
+            VERSION:'0.18.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
