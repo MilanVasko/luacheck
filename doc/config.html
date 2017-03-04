@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration file &mdash; luacheck 0.16.1 documentation</title>
+  <title>Configuration file &mdash; luacheck 0.19.0 documentation</title>
   
 
   
@@ -30,7 +30,10 @@
   
 
   
-    <link rel="top" title="luacheck 0.16.1 documentation" href="index.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="luacheck 0.19.0 documentation" href="index.html"/>
         <link rel="next" title="Inline options" href="inline.html"/>
         <link rel="prev" title="Command line interface" href="cli.html"/> 
 
@@ -41,6 +44,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -60,7 +64,7 @@
             
             
               <div class="version">
-                0.16.1
+                0.19.0
               </div>
             
           
@@ -104,8 +108,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">luacheck</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">luacheck</a>
+        
       </nav>
 
 
@@ -114,23 +120,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Configuration file</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuration file</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/config.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/config.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -144,9 +167,9 @@
 <span id="options"></span><h2>Config options<a class="headerlink" href="#config-options" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
-<col width="28%" />
+<col width="27%" />
 <col width="49%" />
-<col width="24%" />
+<col width="23%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Option</th>
@@ -212,36 +235,44 @@
 <td><code class="docutils literal"><span class="pre">&quot;_G&quot;</span></code></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">globals</span></code></td>
-<td>Array of strings</td>
+<td>Array of strings or field definition map</td>
 <td><code class="docutils literal"><span class="pre">{}</span></code></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">new_globals</span></code></td>
-<td>Array of strings</td>
+<td>Array of strings or field definition map</td>
 <td>(Do not overwrite)</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">read_globals</span></code></td>
-<td>Array of strings</td>
+<td>Array of strings or field definition map</td>
 <td><code class="docutils literal"><span class="pre">{}</span></code></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">new_read_globals</span></code></td>
-<td>Array of strings</td>
+<td>Array of strings or field definition map</td>
 <td>(Do not overwrite)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">compat</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">not_globals</span></code></td>
+<td>Array of strings</td>
+<td><code class="docutils literal"><span class="pre">{}</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">compat</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">allow_defined</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">allow_defined</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">allow_defined_top</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">allow_defined_top</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">module</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">module</span></code></td>
 <td>Boolean</td>
 <td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">max_line_length</span></code></td>
+<td>Number or <code class="docutils literal"><span class="pre">false</span></code></td>
+<td><code class="docutils literal"><span class="pre">120</span></code></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">ignore</span></code></td>
 <td>Array of patterns (see <a class="reference internal" href="cli.html#patterns"><span class="std std-ref">Patterns</span></a>)</td>
@@ -263,18 +294,57 @@
 </table>
 <p>An example of a config which makes <code class="docutils literal"><span class="pre">luacheck</span></code> ensure that only globals from the portable intersection of Lua 5.1, Lua 5.2, Lua 5.3 and LuaJIT 2.0 are used, as well as disables detection of unused arguments:</p>
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">min&quot;</span>
-<span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">212&quot;</span><span class="p">}</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;min&quot;</span>
+<span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;212&quot;</span><span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 </div>
 <div class="section" id="custom-sets-of-globals">
 <span id="custom-stds"></span><h2>Custom sets of globals<a class="headerlink" href="#custom-sets-of-globals" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">std</span></code> option allows setting a custom standard set of globals using a table. In that table, string keys are globals, and string in array part are read-only globals.</p>
-<p>Additionally, custom sets can be given names by mutating global <code class="docutils literal"><span class="pre">stds</span></code> variable. For example, when using <a class="reference external" href="http://www.inf.puc-rio.br/~roberto/lpeg/">LPEG</a> library, it makes sense to access its functions tersely using globals. In that case, the following config allows removing false positives related to global access easily:</p>
-<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">stds</span><span class="p">.</span><span class="n">lpeg</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;</span><span class="s">lpeg&quot;</span>
+<p><code class="docutils literal"><span class="pre">std</span></code> option allows setting a custom standard set of globals using a table. This table can have two fields: <code class="docutils literal"><span class="pre">globals</span></code> and <code class="docutils literal"><span class="pre">read_globals</span></code>.
+Both of them should contain a field definition map defining some globals. The simplest way to define globals is to list their names:</p>
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">globals</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">},</span> <span class="c1">-- these globals can be set and accessed.</span>
+   <span class="n">read_globals</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;quux&quot;</span><span class="p">}</span> <span class="c1">-- these globals can only be accessed.</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<p>For globals defined like this Luacheck will additionally consider any fields within them defined. To define a global with a restricted set of fields, use
+global name as key and a table as value. In that table, <code class="docutils literal"><span class="pre">fields</span></code> subtable can contain the fields in the same format:</p>
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">read_globals</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">-- Defining read-only global `foo`...</span>
+         <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">field1</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">-- `foo.field1` is now defined...</span>
+               <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+                  <span class="n">nested_field</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">-- `foo.field1.nested_field` is now defined...</span>
+               <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="n">field2</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">-- `foo.field2` is defined.</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Globals and fields can be marked read-only or not using <code class="docutils literal"><span class="pre">read_only</span></code> property with a boolean value.
+Property <code class="docutils literal"><span class="pre">other_fields</span></code> controls whether the global or field can also contain other unspecified fields:</p>
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -289,27 +359,50 @@
 12
 13
 14
-15
-16
-17
-18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">lpeg</span> <span class="o">=</span> <span class="nb">require</span> <span class="s2">&quot;</span><span class="s">lpeg&quot;</span>
-
-<span class="kd">local</span> <span class="k">function</span> <span class="nf">parse1</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-   <span class="c1">-- This function only uses lpeg functions as globals.</span>
-   <span class="kd">local</span> <span class="n">_ENV</span> <span class="o">=</span> <span class="n">lpeg</span>
-   <span class="c1">-- luacheck: std lpeg</span>
-   <span class="kd">local</span> <span class="n">digit</span><span class="p">,</span> <span class="n">space</span> <span class="o">=</span> <span class="n">R</span> <span class="s2">&quot;</span><span class="s">09&quot;</span><span class="p">,</span> <span class="n">S</span> <span class="s2">&quot;</span><span class="s"> &quot;</span>
-   <span class="c1">-- ...</span>
-<span class="k">end</span>
-
-<span class="kd">local</span> <span class="k">function</span> <span class="nf">parse2</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-   <span class="c1">-- This function uses lpeg functions as well as standard globals.</span>
-   <span class="kd">local</span> <span class="n">_ENV</span> <span class="o">=</span> <span class="nb">setmetatable</span><span class="p">({},</span> <span class="p">{</span><span class="n">__index</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">return</span> <span class="n">_ENV</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">or</span> <span class="n">lpeg</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">end</span><span class="p">})</span>
-   <span class="c1">-- luacheck: std +lpeg</span>
-   <span class="kd">local</span> <span class="n">digit</span><span class="p">,</span> <span class="n">space</span> <span class="o">=</span> <span class="n">R</span> <span class="s2">&quot;</span><span class="s">09&quot;</span><span class="p">,</span> <span class="n">S</span> <span class="s2">&quot;</span><span class="s"> &quot;</span>
-   <span class="kd">local</span> <span class="n">number</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="n">digit</span><span class="o">^</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">tonumber</span>
-   <span class="c1">-- ...</span>
-<span class="k">end</span>
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">read_globals</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">-- `foo` and its fields are read-only by default (because they are within `read_globals` table).</span>
+         <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">bar</span> <span class="o">=</span> <span class="p">{</span>
+               <span class="n">read_only</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">-- `foo.bar` is not read-only, can be set.</span>
+               <span class="n">other_fields</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">-- `foo.bar[anything]` is defined and can be set or mutated (inherited from `foo.bar`).</span>
+               <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+                  <span class="n">baz</span> <span class="o">=</span> <span class="p">{</span><span class="n">read_only</span> <span class="o">=</span> <span class="kc">true</span><span class="p">},</span> <span class="c1">-- `foo.bar.baz` is read-only as an exception.</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Custom sets can be given names by mutating global <code class="docutils literal"><span class="pre">stds</span></code> variable, so that they can then be used in <code class="docutils literal"><span class="pre">--std</span></code> CLI option
+and <code class="docutils literal"><span class="pre">std</span></code> inline and config option.</p>
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">stds</span><span class="p">.</span><span class="n">some_lib</span> <span class="o">=</span> <span class="p">{...}</span>
+<span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;min+some_lib&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>In config, <code class="docutils literal"><span class="pre">globals</span></code>, <code class="docutils literal"><span class="pre">new_globals</span></code>, <code class="docutils literal"><span class="pre">read_globals</span></code>, and <code class="docutils literal"><span class="pre">new_read_globals</span></code> can also contain definitions in same format:</p>
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">read_globals</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">server</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="c1">-- Allow mutating `server.sessions` with any keys...</span>
+         <span class="n">sessions</span> <span class="o">=</span> <span class="p">{</span><span class="n">read_only</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="n">other_fields</span> <span class="o">=</span> <span class="kc">true</span><span class="p">},</span>
+         <span class="c1">-- other fields...</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="c1">--- other globals...</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -320,19 +413,19 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">min&quot;</span>
-<span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">212&quot;</span><span class="p">}</span>
-<span class="n">files</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">src/dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">enable</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">212&quot;</span><span class="p">}}</span>
-<span class="n">files</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">src/dir/**/*_special.lua&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">212&quot;</span><span class="p">}}</span>
-<span class="n">files</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">spec&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">+busted&quot;</span><span class="p">}</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;min&quot;</span>
+<span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;212&quot;</span><span class="p">}</span>
+<span class="n">files</span><span class="p">[</span><span class="s2">&quot;src/dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">enable</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;212&quot;</span><span class="p">}}</span>
+<span class="n">files</span><span class="p">[</span><span class="s2">&quot;src/dir/**/*_special.lua&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;212&quot;</span><span class="p">}}</span>
+<span class="n">files</span><span class="p">[</span><span class="s2">&quot;spec&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">std</span> <span class="o">=</span> <span class="s2">&quot;+busted&quot;</span><span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 <p>Note that <code class="docutils literal"><span class="pre">files</span></code> table supports autovivification, so that</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">src/dir&quot;</span><span class="p">].</span><span class="n">enable</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">212&quot;</span><span class="p">}</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;src/dir&quot;</span><span class="p">].</span><span class="n">enable</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;212&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>and</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">src/dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">enable</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">212&quot;</span><span class="p">}}</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;src/dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">enable</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;212&quot;</span><span class="p">}}</span>
 </pre></div>
 </div>
 <p>are equivalent.</p>
@@ -340,6 +433,9 @@
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -358,7 +454,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014 - 2016, Peter Melnichenko.
+        &copy; Copyright 2014 - 2017, Peter Melnichenko.
 
     </p>
   </div>
@@ -380,10 +476,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.16.1',
+            VERSION:'0.19.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "luacheck"
-version = "0.16.1-1"
+version = "0.19.0-1"
 -- LuaDist source
 source = {
-  tag = "0.16.1-1",
+  tag = "0.19.0-1",
   url = "git://github.com/LuaDist2/luacheck.git"
 }
 -- Original source
 -- source = {
 --    url = "git+https://github.com/mpeterv/luacheck.git",
---    tag = "0.16.1"
+--    tag = "0.19.0"
 -- }
 description = {
    summary = "A static analyzer and a linter for Lua",
@@ -30,10 +30,12 @@ build = {
       luacheck = "src/luacheck/init.lua",
       ["luacheck.analyze"] = "src/luacheck/analyze.lua",
       ["luacheck.argparse"] = "src/luacheck/argparse.lua",
+      ["luacheck.builtin_standards"] = "src/luacheck/builtin_standards.lua",
       ["luacheck.cache"] = "src/luacheck/cache.lua",
       ["luacheck.check"] = "src/luacheck/check.lua",
       ["luacheck.config"] = "src/luacheck/config.lua",
       ["luacheck.core_utils"] = "src/luacheck/core_utils.lua",
+      ["luacheck.detect_globals"] = "src/luacheck/detect_globals.lua",
       ["luacheck.expand_rockspec"] = "src/luacheck/expand_rockspec.lua",
       ["luacheck.filter"] = "src/luacheck/filter.lua",
       ["luacheck.format"] = "src/luacheck/format.lua",
@@ -47,9 +49,10 @@ build = {
       ["luacheck.options"] = "src/luacheck/options.lua",
       ["luacheck.parser"] = "src/luacheck/parser.lua",
       ["luacheck.reachability"] = "src/luacheck/reachability.lua",
-      ["luacheck.stds"] = "src/luacheck/stds.lua",
+      ["luacheck.standards"] = "src/luacheck/standards.lua",
       ["luacheck.utils"] = "src/luacheck/utils.lua",
-      ["luacheck.version"] = "src/luacheck/version.lua"
+      ["luacheck.version"] = "src/luacheck/version.lua",
+      ["luacheck.whitespace"] = "src/luacheck/whitespace.lua"
    },
    install = {
       bin = {

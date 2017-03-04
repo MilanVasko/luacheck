@@ -1,10 +1,11 @@
-local parse = require "luacheck.parser"
+local parser = require "luacheck.parser"
 local linearize = require "luacheck.linearize"
 local analyze = require "luacheck.analyze"
 local reachability = require "luacheck.reachability"
-local handle_inline_options = require "luacheck.inline_options"
-local core_utils = require "luacheck.core_utils"
+local inline_options = require "luacheck.inline_options"
 local utils = require "luacheck.utils"
+local check_whitespace = require "luacheck.whitespace"
+local detect_globals = require "luacheck.detect_globals"
 
 local function is_secondary(value)
    return value.secondaries and value.secondaries.used
@@ -38,13 +39,43 @@ local type_codes = {
    loopi = "3"
 }
 
-function ChState:warn_global(node, action, is_top)
+-- `index` describes an indexing, where `index[1]` is a global node
+-- and other items describe keys: each one is a string node, "not_string",
+-- or "unknown". `node` is literal base node that's indexed.
+-- E.g. in `local a = table.a; a.b = "c"` `node` is `a` node of the second
+-- statement and `index` describes `table.a.b`.
+-- `index.previous_indexing_len` is optional length of prefix of `index` array representing last assignment
+-- in the aliasing chain, e.g. `2` in the previous example (because last indexing
+-- is `table.a`).
+function ChState:warn_global(node, index, is_lhs, is_top_scope)
+   local global = index[1]
+   local action = is_lhs and (#index == 1 and "set" or "mutate") or "access"
+
+   local indexing = {}
+
+   for i, field in ipairs(index) do
+      if field == "unknown" then
+         indexing[i] = true
+      elseif field == "not_string" then
+         indexing[i] = false
+      else
+         indexing[i] = field[1]
+      end
+   end
+
+   -- and filter out the warning if the base of last indexing is already
+   -- undefined and has been reported.
+   -- E.g. avoid useless warning in the second statement of `local t = tabell; t.concat(...)`.
    self:warn({
       code = "11" .. action_codes[action],
-      name = node[1],
+      name = global[1],
+      indexing = indexing,
+      previous_indexing_len = index.previous_indexing_len,
       line = node.location.line,
       column = node.location.column,
-      top = is_top and (action == "set") or nil
+      end_column = node.location.column + #node[1] - 1,
+      top = is_top_scope and (action == "set") or nil,
+      indirect = node ~= global or nil
    })
 end
 
@@ -108,7 +139,7 @@ end
 function ChState:warn_unused_field_value(node)
    self:warn({
       code = "314",
-      name = node.field,
+      field = node.field,
       index = node.is_index,
       line = node.location.line,
       column = node.location.column,
@@ -151,7 +182,7 @@ end
 function ChState:warn_unused_label(label)
    self:warn({
       code = "521",
-      name = label.name,
+      label = label.name,
       line = label.location.line,
       column = label.location.column,
       end_column = label.end_column
@@ -188,7 +219,7 @@ function ChState:warn_empty_statement(location)
 end
 
 local function check_or_throw(src)
-   local ast, comments, code_lines, semicolons = parse(src)
+   local ast, comments, code_lines, line_endings, semicolons = parser.parse(src)
    local chstate = ChState()
    local line = linearize(chstate, ast)
 
@@ -196,31 +227,37 @@ local function check_or_throw(src)
       chstate:warn_empty_statement(location)
    end
 
+   local lines = utils.split_lines(src)
+   local line_lengths = utils.map(function(s) return #s end, lines)
+   check_whitespace(chstate, lines, line_endings)
    analyze(chstate, line)
    reachability(chstate, line)
-   handle_inline_options(ast, comments, code_lines, chstate.warnings)
-   core_utils.sort_by_location(chstate.warnings)
-   return chstate.warnings
+   detect_globals(chstate, line)
+   local events, per_line_opts = inline_options.get_events(ast, comments, code_lines, chstate.warnings)
+   return {events = events, per_line_options = per_line_opts, line_lengths = line_lengths}
 end
 
 --- Checks source.
--- Returns an array of warnings and errors. Codes for errors start with "0".
--- Syntax errors (with code "011") have message stored in .msg field.
+-- Returns a table with results, with the following fields:
+--    `events`: array of issues and inline option events (options, push, or pop).
+--    `per_line_options`: map from line numbers to arrays of inline option events.
 local function check(src)
-   local warnings, err = utils.pcall(check_or_throw, src)
+   local ok, res = utils.try(check_or_throw, src)
 
-   if warnings then
-      return warnings
-   else
+   if ok then
+      return res
+   elseif utils.is_instance(res.err, parser.SyntaxError) then
       local syntax_error = {
          code = "011",
-         line = err.line,
-         column = err.column,
-         end_column = err.end_column,
-         msg = err.msg
+         line = res.err.line,
+         column = res.err.column,
+         end_column = res.err.end_column,
+         msg = res.err.msg
       }
 
-      return {syntax_error}
+      return {events = {syntax_error}, per_line_options = {}, line_lengths = {}}
+   else
+      error(res, 0)
    end
 end
 

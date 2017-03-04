@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Luacheck documentation &mdash; luacheck 0.16.1 documentation</title>
+  <title>Luacheck documentation &mdash; luacheck 0.19.0 documentation</title>
   
 
   
@@ -30,7 +30,10 @@
   
 
   
-    <link rel="top" title="luacheck 0.16.1 documentation" href="#"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="luacheck 0.19.0 documentation" href="#"/>
         <link rel="next" title="List of warnings" href="warnings.html"/> 
 
   
@@ -40,6 +43,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +63,7 @@
             
             
               <div class="version">
-                0.16.1
+                0.19.0
               </div>
             
           
@@ -98,8 +102,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">luacheck</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">luacheck</a>
+        
       </nav>
 
 
@@ -108,23 +114,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
-      
-    <li>Luacheck documentation</li>
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Luacheck documentation</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -149,11 +172,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="warnings.html#shadowing-declarations">Shadowing declarations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warnings.html#control-flow-and-data-flow-issues">Control flow and data flow issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warnings.html#formatting-issues">Formatting issues</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#command-line-options">Command line options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#patterns">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#defining-extra-globals-and-fields">Defining extra globals and fields</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#sets-of-standard-globals">Sets of standard globals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#formatters">Formatters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#caching">Caching</a></li>
@@ -173,10 +198,13 @@
 </li>
 </ul>
 </div>
-<p>This is documentation for 0.16.1 version of <a class="reference external" href="https://github.com/mpeterv/luacheck/">Luacheck</a>, a linter for <a class="reference external" href="http://www.lua.org/">Lua</a>.</p>
+<p>This is documentation for 0.19.0 version of <a class="reference external" href="https://github.com/mpeterv/luacheck/">Luacheck</a>, a linter for <a class="reference external" href="http://www.lua.org/">Lua</a>.</p>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -193,7 +221,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014 - 2016, Peter Melnichenko.
+        &copy; Copyright 2014 - 2017, Peter Melnichenko.
 
     </p>
   </div>
@@ -215,10 +243,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.16.1',
+            VERSION:'0.19.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

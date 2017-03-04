@@ -45,12 +45,15 @@ local function value_propogation_callback(line, stack, index, item, visited, var
       end
    end
 
-   if stack[index] or (not visited[index] and (not in_scope(var, index) or item.set_variables and item.set_variables[var])) then
-      if not item.live_values then  
-         item.live_values = {}    
+   local stop_and_save = not visited[index] and (
+      not in_scope(var, index) or item.set_variables and item.set_variables[var])
+
+   if stack[index] or stop_and_save then
+      if not item.live_values then
+         item.live_values = {}
       end
 
-      register_value(item.live_values, var, value)  
+      register_value(item.live_values, var, value)
       return true
    end
 
@@ -65,7 +68,7 @@ end
 -- A pair `var = {values}` in this table means that accessed local variable `var` can contain one of values `values`.
 -- Values that can be accessed locally are marked as used.
 local function propogate_values(line)
-   -- {var = values} live at the end of line.   
+   -- {var = values} live at the end of line.
    line.last_live_values = {}
 
    -- It is not very clever to simply propogate every single assigned value.
@@ -93,11 +96,11 @@ end
 -- point be propogated to where value liveness ends and is stored as live.
 -- (Chances that I will understand this comment six months later: non-existent)
 local function closure_propogation_callback(line, _, item, subline)
-   local live_values    
+   local live_values
 
    if not item then
       live_values = line.last_live_values
-   else   
+   else
       live_values = item.live_values
    end
 
@@ -159,7 +162,8 @@ local function propogate_closures(line)
                   for _, another_subline in ipairs(line.lines) do
                      if another_subline.set_upvalues[var] then
                         for _, setting_item in ipairs(another_subline.set_upvalues[var]) do
-                           add_resolution(subline, accessing_item, var, setting_item.set_variables[var], var_map == subline.mutated_upvalues)
+                           add_resolution(subline, accessing_item, var,
+                              setting_item.set_variables[var], var_map == subline.mutated_upvalues)
                         end
                      end
                   end

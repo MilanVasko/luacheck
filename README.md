@@ -1,5 +1,7 @@
 # Luacheck
 
+[![Join the chat at https://gitter.im/luacheck/Lobby](https://badges.gitter.im/luacheck/Lobby.svg)](https://gitter.im/luacheck/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/mpeterv/luacheck.png?branch=master)](https://travis-ci.org/mpeterv/luacheck)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/pgox2vvelagw1fux/branch/master?svg=true&passingText=Windows%20build%20passing&failingText=Windows%20build%20failing)](https://ci.appveyor.com/project/mpeterv/luacheck/branch/master)
 [![Coverage Status](https://coveralls.io/repos/mpeterv/luacheck/badge.svg?branch=master)](https://coveralls.io/r/mpeterv/luacheck?branch=master)
@@ -20,7 +22,7 @@
 
 Luacheck is a static analyzer and a linter for [Lua](http://www.lua.org). Luacheck detects various issues such as usage of undefined global variables, unused variables and values, accessing uninitialized variables, unreachable code and more. Most aspects of checking are configurable: there are options for defining custom project-related globals, for selecting set of standard globals (version of Lua standard library), for filtering warnings by type and name of related variable, etc. The options can be used on the command line, put into a config or directly into checked files as Lua comments.
 
-Luacheck supports checking Lua files using syntax of Lua 5.1, Lua 5.2, Lua 5.3 and LuaJIT 2.0. Luacheck itself is written in Lua and runs on all of mentioned Lua versions.
+Luacheck supports checking Lua files using syntax of Lua 5.1, Lua 5.2, Lua 5.3 and LuaJIT. Luacheck itself is written in Lua and runs on all of mentioned Lua versions.
 
 ## Installation
 
@@ -36,7 +38,7 @@ If it is not possible to install [LuaFileSystem](http://keplerproject.github.io/
 
 For manual installation, only a Lua interpreter binary is required.
 
-1. Download and unpack latest Luacheck release ([.zip](https://github.com/mpeterv/luacheck/archive/0.16.1.zip) [.tar.gz](https://github.com/mpeterv/luacheck/archive/0.16.1.tar.gz)).
+1. Download and unpack latest Luacheck release ([.zip](https://github.com/mpeterv/luacheck/archive/0.19.0.zip), [.tar.gz](https://github.com/mpeterv/luacheck/archive/0.19.0.tar.gz)).
 2. Run `install.lua <path>` script using the Lua interpreter. If Lua interpreter is not in `PATH`, invoke it using absolute path.
 3. Add `<path>/bin` to PATH or run Luacheck as `<path>/bin/luacheck`.
 
@@ -87,7 +89,7 @@ There are a few plugins which allow using Luacheck directly inside an editor, sh
 * For Vim, [Syntastic](https://github.com/scrooloose/syntastic/) contains [luacheck checker](https://github.com/scrooloose/syntastic/wiki/Lua%3A---luacheck);
 * For Sublime Text 3 there is [SublimeLinter-luacheck](https://packagecontrol.io/packages/SublimeLinter-luacheck) which requires [SublimeLinter](http://sublimelinter.readthedocs.org/en/latest/);
 * For Atom there is [linter-luacheck](https://atom.io/packages/linter-luacheck) which requires [AtomLinter](https://github.com/atom-community/linter);
-* For Emacs, [Flycheck](http://www.flycheck.org/) contains [luacheck checker](http://www.flycheck.org/manual/latest/Supported-languages.html#Lua);
+* For Emacs, [Flycheck](http://www.flycheck.org/) contains [luacheck checker](http://www.flycheck.org/en/latest/languages.html#lua);
 * For Brackets, there is [linter.luacheck](https://github.com/Malcolm3141/brackets-luacheck) extension.
 
 If you are a plugin developer, see [recommended way of using Luacheck in a plugin](http://luacheck.readthedocs.org/en/stable/cli.html#stable-interface-for-editor-plugins-and-tools).
@@ -105,20 +107,20 @@ Documentation can be built using [Sphinx](http://sphinx-doc.org/): `sphinx-build
 
 ## Development
 
-Luacheck is currently in development. The latest released version is 0.16.1. The interface of the `luacheck` module may change between minor releases. The command line interface is fairly stable.
+Luacheck is currently in development. The latest released version is 0.19.0. The interface of the `luacheck` module may change between minor releases. The command line interface is fairly stable.
 
 Use the Luacheck issue tracker on GitHub to submit bugs, suggestions and questions. Any pull requests are welcome, too.
 
 ## Building and testing
 
-After the Luacheck repo is cloned and changes are made, run `luarocks make` (optionally prepended with `sudo`) from its root directory to install dev version of Luacheck. To test Luacheck, ensure that you have [busted](http://olivinelabs.com/busted/) installed and run `busted`.
+After the Luacheck repo is cloned and changes are made, run `luarocks make` (optionally prepended with `sudo`) from its root directory to install dev version of Luacheck. To run Luacheck using sources in current directory without installing it, run `lua -e 'package.path="./src/?.lua;./src/?/init.lua;"..package.path' bin/luacheck.lua ...`. To test Luacheck, ensure that you have [busted](http://olivinelabs.com/busted/) installed and run `busted`.
 
 ## License
 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2014 - 2016 Peter Melnichenko
+Copyright (c) 2014 - 2017 Peter Melnichenko
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

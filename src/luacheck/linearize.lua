@@ -1,4 +1,4 @@
-local lexer = require "luacheck.lexer"
+local parser = require "luacheck.parser"
 local utils = require "luacheck.utils"
 
 local pseudo_labels = utils.array_to_set({"do", "else", "break", "end", "return"})
@@ -38,7 +38,7 @@ local function new_var(line, node, type_)
    }
 end
 
-local function new_value(var_node, value_node, is_init)
+local function new_value(var_node, value_node, item, is_init)
    local value = {
       var = var_node.var,
       location = var_node.location,
@@ -46,7 +46,8 @@ local function new_value(var_node, value_node, is_init)
       initial = is_init,
       node = value_node,
       using_lines = {},
-      empty = is_init and not value_node and (var_node.var.type == "var")
+      empty = is_init and not value_node and (var_node.var.type == "var"),
+      item = item
    }
 
    if value_node and value_node.tag == "Function" then
@@ -157,9 +158,11 @@ function LinState:leave_scope()
       else
          if not prev_scope or prev_scope.line ~= self.lines.top then
             if goto_.name == "break" then
-               lexer.syntax_error(goto_.location, goto_.location.column + 4, "'break' is not inside a loop")
+               parser.syntax_error(
+                  goto_.location, goto_.location.column + 4, "'break' is not inside a loop")
             else
-               lexer.syntax_error(goto_.location, goto_.location.column + 3, ("no visible label '%s'"):format(goto_.name))
+               parser.syntax_error(
+                  goto_.location, goto_.location.column + 3, ("no visible label '%s'"):format(goto_.name))
             end
          end
 
@@ -212,22 +215,18 @@ function LinState:resolve_var(name)
    end
 end
 
-function LinState:check_var(node, action)
-   local var = self:resolve_var(node[1])
-
-   if not var then
-      self.chstate:warn_global(node, action, self.lines.size == 1)
-   else
-      node.var = var
+function LinState:check_var(node)
+   if not node.var then
+      node.var = self:resolve_var(node[1])
    end
 
-   return var
+   return node.var
 end
 
 function LinState:register_label(name, location, end_column)
    if self.scopes.top.labels[name] then
       assert(not pseudo_labels[name])
-      lexer.syntax_error(location, end_column, ("label '%s' already defined on line %d"):format(
+      parser.syntax_error(location, end_column, ("label '%s' already defined on line %d"):format(
          name, self.scopes.top.labels[name].location.line))
    end
 
@@ -451,7 +450,7 @@ function LinState:emit_stmt_Set(node)
 
    for _, expr in ipairs(node[1]) do
       if expr.tag == "Id" then
-         local var = self:check_var(expr, "set")
+         local var = self:check_var(expr)
 
          if var then
             self:register_upvalue_action(item, var, "set_upvalues")
@@ -517,16 +516,16 @@ function LinState:mark_mutation(item, node)
 end
 
 function LinState:scan_expr_Id(item, node)
-   if self:check_var(node, "access") then
+   if self:check_var(node) then
       self:mark_access(item, node)
    end
 end
 
 function LinState:scan_expr_Dots(item, node)
-   local dots = self:check_var(node, "access")
+   local dots = self:check_var(node)
 
    if not dots or dots.line ~= self.lines.top then
-      lexer.syntax_error(node.location, node.location.column + 2, "cannot use '...' outside a vararg function")
+      parser.syntax_error(node.location, node.location.column + 2, "cannot use '...' outside a vararg function")
    end
 
    self:mark_access(item, node)
@@ -534,7 +533,7 @@ end
 
 function LinState:scan_lhs_index(item, node)
    if node[1].tag == "Id" then
-      if self:check_var(node[1], "mutate") then
+      if self:check_var(node[1]) then
          self:mark_mutation(item, node[1])
       end
    elseif node[1].tag == "Index" then
@@ -646,7 +645,7 @@ function LinState:register_set_variables()
             local value
 
             if node.var then
-               value = new_value(node, item.rhs and item.rhs[i] or unpacking_item, is_init)
+               value = new_value(node, item.rhs and item.rhs[i] or unpacking_item, item, is_init)
                item.set_variables[node.var] = value
                table.insert(node.var.values, value)
             end
