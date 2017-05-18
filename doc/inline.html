@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Inline options &mdash; luacheck 0.19.1 documentation</title>
+  <title>Inline options &mdash; luacheck 0.20.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.19.1 documentation" href="index.html"/>
+    <link rel="top" title="luacheck 0.20.0 documentation" href="index.html"/>
         <link rel="next" title="Luacheck module" href="module.html"/>
         <link rel="prev" title="Configuration file" href="config.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.1
+                0.20.0
               </div>
             
           
@@ -161,11 +161,12 @@
             
   <div class="section" id="inline-options">
 <h1>Inline options<a class="headerlink" href="#inline-options" title="Permalink to this headline">¶</a></h1>
-<p>Luacheck supports setting some options directly in the checked files using inline configuration comments. An inline configuration comment starts with <code class="docutils literal"><span class="pre">luacheck:</span></code> label, possibly after some whitespace. The body of the comment should contain comma separated options, where option invocation consists of its name plus space separated arguments. It can also contain notes enclosed in balanced parentheses, which are ignored. The following options are supported:</p>
+<p>Luacheck supports setting some options directly in the checked files using inline configuration comments. These inline options have the highest priority, overwriting both config options and CLI options.</p>
+<p>An inline configuration comment starts with <code class="docutils literal"><span class="pre">luacheck:</span></code> label, possibly after some whitespace. The body of the comment should contain comma separated options, where option invocation consists of its name plus space separated arguments. It can also contain notes enclosed in balanced parentheses, which are ignored. The following options are supported:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="23%" />
-<col width="77%" />
+<col width="25%" />
+<col width="75%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Option</th>
@@ -206,31 +207,40 @@
 <tr class="row-even"><td>max line length</td>
 <td>1 (with <code class="docutils literal"><span class="pre">no</span></code> and no arguments disables line length checks)</td>
 </tr>
-<tr class="row-odd"><td>std</td>
+<tr class="row-odd"><td>max code line length</td>
+<td>1 (with <code class="docutils literal"><span class="pre">no</span></code> and no arguments disables code line length checks)</td>
+</tr>
+<tr class="row-even"><td>max string line length</td>
+<td>1 (with <code class="docutils literal"><span class="pre">no</span></code> and no arguments disables string line length checks)</td>
+</tr>
+<tr class="row-odd"><td>max comment line length</td>
+<td>1 (with <code class="docutils literal"><span class="pre">no</span></code> and no arguments disables comment line length checks)</td>
+</tr>
+<tr class="row-even"><td>std</td>
 <td>1</td>
 </tr>
-<tr class="row-even"><td>globals</td>
+<tr class="row-odd"><td>globals</td>
 <td>0+</td>
 </tr>
-<tr class="row-odd"><td>new globals</td>
+<tr class="row-even"><td>new globals</td>
 <td>0+</td>
 </tr>
-<tr class="row-even"><td>read globals</td>
+<tr class="row-odd"><td>read globals</td>
 <td>0+</td>
 </tr>
-<tr class="row-odd"><td>new read globals</td>
+<tr class="row-even"><td>new read globals</td>
 <td>0+</td>
 </tr>
-<tr class="row-even"><td>not globals</td>
+<tr class="row-odd"><td>not globals</td>
 <td>0+</td>
 </tr>
-<tr class="row-odd"><td>ignore</td>
+<tr class="row-even"><td>ignore</td>
 <td>0+ (without arguments everything is ignored)</td>
 </tr>
-<tr class="row-even"><td>enable</td>
+<tr class="row-odd"><td>enable</td>
 <td>1+</td>
 </tr>
-<tr class="row-odd"><td>only</td>
+<tr class="row-even"><td>only</td>
 <td>1+</td>
 </tr>
 </tbody>
@@ -315,7 +325,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.19.1',
+            VERSION:'0.20.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

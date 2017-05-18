@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Luacheck module &mdash; luacheck 0.19.1 documentation</title>
+  <title>Luacheck module &mdash; luacheck 0.20.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.19.1 documentation" href="index.html"/>
+    <link rel="top" title="luacheck 0.20.0 documentation" href="index.html"/>
         <link rel="prev" title="Inline options" href="inline.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.19.1
+                0.20.0
               </div>
             
           
@@ -180,8 +180,8 @@
 <p>An issue is a table with field <code class="docutils literal"><span class="pre">code</span></code> indicating its type (see <a class="reference internal" href="warnings.html"><span class="doc">List of warnings</span></a>), and fields <code class="docutils literal"><span class="pre">line</span></code>, <code class="docutils literal"><span class="pre">column</span></code> and <code class="docutils literal"><span class="pre">end_column</span></code> pointing to the source of the warning. <code class="docutils literal"><span class="pre">name</span></code> field may contain name of related variable. Issues of some types can also have additional fields:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="13%" />
-<col width="87%" />
+<col width="11%" />
+<col width="89%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Codes</th>
@@ -220,6 +220,9 @@
 <td><code class="docutils literal"><span class="pre">label</span></code> field contains label name.</td>
 </tr>
 <tr class="row-even"><td>631</td>
+<td><code class="docutils literal"><span class="pre">line_ending</span></code> field contains <code class="docutils literal"><span class="pre">&quot;comment&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;string&quot;</span></code> if line ending is within a comment or a string.</td>
+</tr>
+<tr class="row-odd"><td>631</td>
 <td><code class="docutils literal"><span class="pre">max_length</span></code> field contains maximum allowed line length.</td>
 </tr>
 </tbody>
@@ -270,7 +273,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.19.1',
+            VERSION:'0.20.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

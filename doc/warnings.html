@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>List of warnings &mdash; luacheck 0.19.1 documentation</title>
+  <title>List of warnings &mdash; luacheck 0.20.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.19.1 documentation" href="index.html"/>
+    <link rel="top" title="luacheck 0.20.0 documentation" href="index.html"/>
         <link rel="next" title="Command line interface" href="cli.html"/>
         <link rel="prev" title="Luacheck documentation" href="index.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.1
+                0.20.0
               </div>
             
           
@@ -92,20 +92,31 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">List of warnings</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#global-variables">Global variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#global-variables-1xx">Global variables (1xx)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#read-only-globals">Read-only globals</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#implicitly-defined-globals">Implicitly defined globals</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#unused-variables-and-values">Unused variables and values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unused-variables-2xx-and-values-3xx">Unused variables (2xx) and values (3xx)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#unused-values-and-uninitialized-variables">Unused values and uninitialized variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#secondary-values-and-variables">Secondary values and variables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#shadowing-declarations">Shadowing declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#control-flow-and-data-flow-issues">Control flow and data flow issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#formatting-issues">Formatting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shadowing-declarations-4xx">Shadowing declarations (4xx)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-flow-and-data-flow-issues-5xx">Control flow and data flow issues (5xx)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unreachable-code">Unreachable code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unused-labels">Unused labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unbalanced-assignments">Unbalanced assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#empty-blocks">Empty blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#empty-statements">Empty statements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#formatting-issues-6xx">Formatting issues (6xx)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#whitespace-issues">Whitespace issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-length-limits">Line length limits</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a></li>
@@ -177,7 +188,7 @@
             
   <div class="section" id="list-of-warnings">
 <h1>List of warnings<a class="headerlink" href="#list-of-warnings" title="Permalink to this headline">¶</a></h1>
-<p>Warnings produced by Luacheck are categorized using three-digit warning codes. Warning codes can be displayed in CLI output using <code class="docutils literal"><span class="pre">--codes</span></code> CLI option or <code class="docutils literal"><span class="pre">codes</span></code> config option. Errors also have codes starting with zero.</p>
+<p>Warnings produced by Luacheck are categorized using three-digit warning codes. Warning codes can be displayed in CLI output using <code class="docutils literal"><span class="pre">--codes</span></code> CLI option or <code class="docutils literal"><span class="pre">codes</span></code> config option. Errors also have codes starting with zero; unlike warnings, they can not be ignored.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="6%" />
@@ -341,8 +352,8 @@
 </tr>
 </tbody>
 </table>
-<div class="section" id="global-variables">
-<h2>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="global-variables-1xx">
+<h2>Global variables (1xx)<a class="headerlink" href="#global-variables-1xx" title="Permalink to this headline">¶</a></h2>
 <p>For each file, Luacheck builds list of defined globals and fields which can be used there. By default only globals from Lua standard library are defined; custom globals can be added using <code class="docutils literal"><span class="pre">--globals</span></code> CLI option or <code class="docutils literal"><span class="pre">globals</span></code> config option, and version of standard library can be selected using <code class="docutils literal"><span class="pre">--std</span></code> CLI option or <code class="docutils literal"><span class="pre">std</span></code> config option. When an undefined global or field is set, mutated or accessed, Luacheck produces a warning.</p>
 <div class="section" id="read-only-globals">
 <h3>Read-only globals<a class="headerlink" href="#read-only-globals" title="Permalink to this headline">¶</a></h3>
@@ -368,8 +379,8 @@
 <p>Files can be marked as modules using <code class="docutils literal"><span class="pre">-m</span></code>/<code class="docutils literal"><span class="pre">--module</span></code> CLI option or <code class="docutils literal"><span class="pre">module</span></code> config option to simulate semantics of the deprecated <a class="reference external" href="http://www.lua.org/manual/5.1/manual.html#pdf-module">module</a> function. Globals implicitly defined inside a module are considired part of its interface, are not visible outside and are not reported as unused. Assignments to other globals are not allowed, even to defined ones.</p>
 </div>
 </div>
-<div class="section" id="unused-variables-and-values">
-<h2>Unused variables and values<a class="headerlink" href="#unused-variables-and-values" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unused-variables-2xx-and-values-3xx">
+<h2>Unused variables (2xx) and values (3xx)<a class="headerlink" href="#unused-variables-2xx-and-values-3xx" title="Permalink to this headline">¶</a></h2>
 <p>Luacheck generates warnings for all unused local variables except one named <code class="docutils literal"><span class="pre">_</span></code>. It also detects variables which are set but never accessed or accessed but never set.</p>
 <div class="section" id="unused-values-and-uninitialized-variables">
 <h3>Unused values and uninitialized variables<a class="headerlink" href="#unused-values-and-uninitialized-variables" title="Permalink to this headline">¶</a></h3>
@@ -414,8 +425,8 @@
 <p>Warnings related to unused secondary values and variables can be removed using <code class="docutils literal"><span class="pre">-s</span></code>/<code class="docutils literal"><span class="pre">--no-unused-secondaries</span></code> CLI option or <code class="docutils literal"><span class="pre">unused_secondaries</span></code> config option.</p>
 </div>
 </div>
-<div class="section" id="shadowing-declarations">
-<h2>Shadowing declarations<a class="headerlink" href="#shadowing-declarations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="shadowing-declarations-4xx">
+<h2>Shadowing declarations (4xx)<a class="headerlink" href="#shadowing-declarations-4xx" title="Permalink to this headline">¶</a></h2>
 <p>Luacheck detects declarations of local variables shadowing previous declarations, unless the variable is named <code class="docutils literal"><span class="pre">_</span></code>. If the previous declaration is in the same scope as the new one, it is called redefining.</p>
 <p>Note that it is <strong>not</strong> necessary to define a new local variable when overwriting an argument:</p>
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -434,20 +445,65 @@
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="control-flow-and-data-flow-issues">
-<h2>Control flow and data flow issues<a class="headerlink" href="#control-flow-and-data-flow-issues" title="Permalink to this headline">¶</a></h2>
-<p>The following control flow and data flow issues are detected:</p>
-<ul class="simple">
-<li>Unreachable code and loops that can be executed at most once (e.g. due to an unconditional break);</li>
-<li>Unused labels;</li>
-<li>Unbalanced assignments;</li>
-<li>Empty blocks.</li>
-<li>Empty statements (semicolons without preceding statements).</li>
-</ul>
+<div class="section" id="control-flow-and-data-flow-issues-5xx">
+<h2>Control flow and data flow issues (5xx)<a class="headerlink" href="#control-flow-and-data-flow-issues-5xx" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unreachable-code">
+<h3>Unreachable code<a class="headerlink" href="#unreachable-code" title="Permalink to this headline">¶</a></h3>
+<p>Luacheck detects unreachable code. It also detects it if end of a loop block is unreachable, which means that the loop can be executed at most once:</p>
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span> <span class="kr">do</span>
+   <span class="c1">-- Break statement is outside the `if` block,</span>
+   <span class="c1">-- so that the loop always stops after the first iteration.</span>
+   <span class="kr">if</span> <span class="n">cond</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="kr">then</span> <span class="n">f</span><span class="p">()</span> <span class="kr">end</span> <span class="kr">break</span>
+<span class="kr">end</span>
+</pre></div>
+</td></tr></table></div>
 </div>
-<div class="section" id="formatting-issues">
-<h2>Formatting issues<a class="headerlink" href="#formatting-issues" title="Permalink to this headline">¶</a></h2>
-<p>Luacheck detects some common formatting issues, such as trailing whitespace and lines that are too long.</p>
+<div class="section" id="unused-labels">
+<h3>Unused labels<a class="headerlink" href="#unused-labels" title="Permalink to this headline">¶</a></h3>
+<p>Labels that are not used by any <code class="docutils literal"><span class="pre">goto</span></code> statements are reported as unused.</p>
+</div>
+<div class="section" id="unbalanced-assignments">
+<h3>Unbalanced assignments<a class="headerlink" href="#unbalanced-assignments" title="Permalink to this headline">¶</a></h3>
+<p>If an assignment has left side and right side with different lengths, the assignment is unbalanced and Luacheck warns about it.</p>
+<p>An exception is initializing several local variables in a single statement while leaving some uninitialized:</p>
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="kc">nil</span> <span class="c1">-- Effectively sets `a`, `b`, and `c` to nil, no warning.</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="empty-blocks">
+<h3>Empty blocks<a class="headerlink" href="#empty-blocks" title="Permalink to this headline">¶</a></h3>
+<p>Luacheck warns about empty <code class="docutils literal"><span class="pre">do</span></code> <code class="docutils literal"><span class="pre">end</span></code> blocks and empty <code class="docutils literal"><span class="pre">if</span></code> branches (<code class="docutils literal"><span class="pre">then</span></code> <code class="docutils literal"><span class="pre">else</span></code>, <code class="docutils literal"><span class="pre">then</span></code> <code class="docutils literal"><span class="pre">elseif</span></code>, and <code class="docutils literal"><span class="pre">then</span></code> <code class="docutils literal"><span class="pre">end</span></code>).</p>
+</div>
+<div class="section" id="empty-statements">
+<h3>Empty statements<a class="headerlink" href="#empty-statements" title="Permalink to this headline">¶</a></h3>
+<p>In Lua 5.2+ semicolons are considered statements and can appear even when not following normal statements. Such semicolons
+produce Luacheck warnings as they are completely useless.</p>
+</div>
+</div>
+<div class="section" id="formatting-issues-6xx">
+<h2>Formatting issues (6xx)<a class="headerlink" href="#formatting-issues-6xx" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="whitespace-issues">
+<h3>Whitespace issues<a class="headerlink" href="#whitespace-issues" title="Permalink to this headline">¶</a></h3>
+<p>Luacheck warns about trailing whitespace and inconsistent indentation (<code class="docutils literal"><span class="pre">SPACE</span></code> followed by <code class="docutils literal"><span class="pre">TAB</span></code>).</p>
+</div>
+<div class="section" id="line-length-limits">
+<h3>Line length limits<a class="headerlink" href="#line-length-limits" title="Permalink to this headline">¶</a></h3>
+<p>Luacheck warns about lines that are longer then some limit. Default limit is <code class="docutils literal"><span class="pre">120</span></code> characters. It&#8217;s possible
+to change this limit using <code class="docutils literal"><span class="pre">--max-line-length</span></code> CLI option or disable the check completely with
+<code class="docutils literal"><span class="pre">--no-max-line-length</span></code>; there are similar config and inline options.</p>
+<p>Additionally, separate limits can be set for three different type of lines:</p>
+<ul class="simple">
+<li>&#8220;String&#8221; lines have their line ending inside a string, typically a long string using <code class="docutils literal"><span class="pre">[[...]]</span></code> syntax.</li>
+<li>&#8220;Comment&#8221; lines have their line ending inside a long comment (<code class="docutils literal"><span class="pre">--[[...]]</span></code>), or end with a short comment using normal <code class="docutils literal"><span class="pre">--...</span></code> syntax.</li>
+<li>&#8220;Code&#8221; lines are all other lines.</li>
+</ul>
+<p>These types of lines are limited using CLI options named <code class="docutils literal"><span class="pre">--[no-]max-string-line-length</span></code>, <code class="docutils literal"><span class="pre">--[no-]max-comment-line-length</span></code>,
+and <code class="docutils literal"><span class="pre">--[no-]max-code-line-length</span></code>, with similar config and inline options.</p>
+</div>
 </div>
 </div>
 
@@ -495,7 +551,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.19.1',
+            VERSION:'0.20.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

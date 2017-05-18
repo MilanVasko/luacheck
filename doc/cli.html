@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Command line interface &mdash; luacheck 0.19.1 documentation</title>
+  <title>Command line interface &mdash; luacheck 0.20.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.19.1 documentation" href="index.html"/>
+    <link rel="top" title="luacheck 0.20.0 documentation" href="index.html"/>
         <link rel="next" title="Configuration file" href="config.html"/>
         <link rel="prev" title="List of warnings" href="warnings.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.1
+                0.20.0
               </div>
             
           
@@ -210,9 +210,10 @@ Total: 14 warnings / 1 error in 4 files
 <p><code class="docutils literal"><span class="pre">luacheck</span></code> chooses exit code as follows:</p>
 <ul class="simple">
 <li>Exit code is <code class="docutils literal"><span class="pre">0</span></code> if no warnings or errors occurred.</li>
-<li>Exit code is <code class="docutils literal"><span class="pre">1</span></code> if some warnings or syntax errors occured.</li>
-<li>Exit code is <code class="docutils literal"><span class="pre">2</span></code> if some files couldn&#8217;t be checked, typically due to an incorrect file name.</li>
-<li>Exit code is <code class="docutils literal"><span class="pre">3</span></code> if there was a critical error (invalid CLI arguments, config, or cache file).</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">1</span></code> if some warnings occured but there were no syntax errors or invalid inline options.</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">2</span></code> if there were some syntax errors or invalid inline options.</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">3</span></code> if some files couldn&#8217;t be checked, typically due to an incorrect file name.</li>
+<li>Exit code is <code class="docutils literal"><span class="pre">4</span></code> if there was a critical error (invalid CLI arguments, config, or cache file).</li>
 </ul>
 <div class="section" id="command-line-options">
 <span id="cliopts"></span><h2>Command line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">¶</a></h2>
@@ -265,6 +266,7 @@ Total: 14 warnings / 1 error in 4 files
 <li><code class="docutils literal"><span class="pre">max</span></code> - union of globals of Lua 5.1, Lua 5.2, Lua 5.3 and LuaJIT 2.0;</li>
 <li><code class="docutils literal"><span class="pre">_G</span></code>  (default) - same as <code class="docutils literal"><span class="pre">lua51c</span></code>, <code class="docutils literal"><span class="pre">lua52c</span></code>, <code class="docutils literal"><span class="pre">lua53c</span></code>, or <code class="docutils literal"><span class="pre">luajit</span></code> depending on version of Lua used
 to run <code class="docutils literal"><span class="pre">luacheck</span></code> or same as <code class="docutils literal"><span class="pre">max</span></code> if couldn&#8217;t detect the version;</li>
+<li><code class="docutils literal"><span class="pre">love</span></code> - globals added by <a class="reference external" href="https://love2d.org">LÖVE</a> (love2d);</li>
 <li><code class="docutils literal"><span class="pre">busted</span></code> - globals added by Busted 2.0;</li>
 <li><code class="docutils literal"><span class="pre">rockspec</span></code> - globals allowed in rockspecs;</li>
 <li><code class="docutils literal"><span class="pre">none</span></code> - no standard globals.</li>
@@ -311,6 +313,24 @@ to run <code class="docutils literal"><span class="pre">luacheck</span></code> o
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-max-line-length</span></code></td>
 <td>Do not limit line length.</td>
 </tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--max-code-line-length</span> <span class="pre">&lt;length</span></code></td>
+<td>Set maximum allowed length for lines ending with code (default: 120).</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-max-code-line-length</span></code></td>
+<td>Do not limit code line length.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--max-string-line-length</span> <span class="pre">&lt;length</span></code></td>
+<td>Set maximum allowed length for lines within a string (default: 120).</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-max-string-line-length</span></code></td>
+<td>Do not limit string line length.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--max-comment-line-length</span> <span class="pre">&lt;length</span></code></td>
+<td>Set maximum allowed length for comment lines (default: 120).</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-max-comment-line-length</span></code></td>
+<td>Do not limit comment line length.</td>
+</tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">--ignore</span> <span class="pre">|</span> <span class="pre">-i</span> <span class="pre">&lt;patt&gt;</span> <span class="pre">[&lt;patt&gt;]</span> <span class="pre">...</span></code></td>
 <td>Filter out warnings matching patterns.</td>
 </tr>
@@ -328,6 +348,19 @@ to run <code class="docutils literal"><span class="pre">luacheck</span></code> o
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-config</span></code></td>
 <td>Do not look up custom configuration file.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">--default-config</span> <span class="pre">&lt;config&gt;</span></code></td>
+<td><p class="first">Default path to custom configuration file, to be used if <code class="docutils literal"><span class="pre">--[no-]config</span></code> is not used and <code class="docutils literal"><span class="pre">.luacheckrc</span></code> is not found.</p>
+<p>Default global location is:</p>
+<ul class="last simple">
+<li><code class="docutils literal"><span class="pre">%LOCALAPPDATA%\Luacheck\.luacheckrc</span></code> on Windows;</li>
+<li><code class="docutils literal"><span class="pre">~/Library/Application</span> <span class="pre">Support/Luacheck/.luacheckrc</span></code> on OS X/macOS;</li>
+<li><code class="docutils literal"><span class="pre">$XDG_CONFIG_HOME/luacheck/.luacheckrc</span></code> or <code class="docutils literal"><span class="pre">~/.config/luacheck/.luacheckrc</span></code> on other systems.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--no-default-config</span></code></td>
+<td>Do not use fallback configuration file.</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">--filename</span> <span class="pre">&lt;filename&gt;</span></code></td>
 <td>Use another filename in output, for selecting
@@ -487,7 +520,7 @@ Default number of jobs is set to number of available processing units.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.19.1',
+            VERSION:'0.20.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

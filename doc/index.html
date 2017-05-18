@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Luacheck documentation &mdash; luacheck 0.19.1 documentation</title>
+  <title>Luacheck documentation &mdash; luacheck 0.20.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="luacheck 0.19.1 documentation" href="#"/>
+    <link rel="top" title="luacheck 0.20.0 documentation" href="#"/>
         <link rel="next" title="List of warnings" href="warnings.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.19.1
+                0.20.0
               </div>
             
           
@@ -164,20 +164,31 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="warnings.html">List of warnings</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="warnings.html#global-variables">Global variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="warnings.html#global-variables-1xx">Global variables (1xx)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="warnings.html#read-only-globals">Read-only globals</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warnings.html#implicitly-defined-globals">Implicitly defined globals</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warnings.html#modules">Modules</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="warnings.html#unused-variables-and-values">Unused variables and values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="warnings.html#unused-variables-2xx-and-values-3xx">Unused variables (2xx) and values (3xx)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="warnings.html#unused-values-and-uninitialized-variables">Unused values and uninitialized variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warnings.html#secondary-values-and-variables">Secondary values and variables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="warnings.html#shadowing-declarations">Shadowing declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="warnings.html#control-flow-and-data-flow-issues">Control flow and data flow issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="warnings.html#formatting-issues">Formatting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warnings.html#shadowing-declarations-4xx">Shadowing declarations (4xx)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warnings.html#control-flow-and-data-flow-issues-5xx">Control flow and data flow issues (5xx)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#unreachable-code">Unreachable code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#unused-labels">Unused labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#unbalanced-assignments">Unbalanced assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#empty-blocks">Empty blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#empty-statements">Empty statements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="warnings.html#formatting-issues-6xx">Formatting issues (6xx)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#whitespace-issues">Whitespace issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warnings.html#line-length-limits">Line length limits</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface</a><ul>
@@ -203,7 +214,7 @@
 </li>
 </ul>
 </div>
-<p>This is documentation for 0.19.1 version of <a class="reference external" href="https://github.com/mpeterv/luacheck/">Luacheck</a>, a linter for <a class="reference external" href="http://www.lua.org/">Lua</a>.</p>
+<p>This is documentation for 0.20.0 version of <a class="reference external" href="https://github.com/mpeterv/luacheck/">Luacheck</a>, a linter for <a class="reference external" href="http://www.lua.org/">Lua</a>.</p>
 </div>
 
 
@@ -248,7 +259,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.19.1',
+            VERSION:'0.20.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
