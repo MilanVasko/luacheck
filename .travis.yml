@@ -1,11 +1,10 @@
 language: C
-
 before_install:
-    - cat ./before_install.sh | sh
-
+- cat ./before_install.sh | sh
 script:
-    - cat ./script.sh | sh
-
+- cat ./script.sh | sh
 after_script:
-    - cat ./after_script.sh | sh
-
+- cat ./after_script.sh | sh
+env:
+  global:
+    secure: HjApKQQnCwNKyIydVyGMaKojUWeqmaXG2PokVxbJPWFwkNQcMmjYWWemYtts4SDxOJvIQNbD/3dJM1LfQSRc1VQyzn3TWn2sm8o9WslTRU1CnqwUf1ovABYRFXXhAMPiR5M77YQS/HV/exwAAL9pEvvESDuqXLSfPafNsHOI5p1feuKJ1PYUZFFI2Aoysl8ehwL7vRgQu0NKohvHG2YWkaL+BK6fubHBLtmMsohuQjhT4StZoF+XR6fZXZUIwVRmc4AvxUlx9cbtHfbHKMslJHAmpTHJd5Mh/XHhlS9lv6bNkLCnklUMzdzxCv9inQZuAShREe3wkEJgfZsdokJV7pXx3gAFZKn8iaSnKFmEGt607s3ly7bYaoeLh+LHQXuZahYGmMhOoB7G5lOHoQ0eN0gaZjSqRp58Poa+Opx6IQA/APevtdbTmpCL5UesSBa4IDUhKjEc+Dm2iaR2Nd5LAdKJqYQ6/xBvZ++G9VXW6EdbwAvq3qJEk9+70N+8jZRI4GB93/L6p0hRX0noB8Pv13LmznO/NJWiHAz69+SgB+YuNXD5uNHHU2qpVm5RxTXZ3GUhwZJh2X0HcSoMKyCHj5Ol/E3XZAcY+KNywyOV2nwLLCrbAV8DXbxwnBZnAAwAkSbB70qDjXQp/O+gyVknTVnPb7lOgAcf+r7VpI8OiNQ=
