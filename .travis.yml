@@ -1,14 +1,10 @@
 language: C
-
 before_install:
-    - cat ./before_install.sh | sh
-
+- cat ./before_install.sh | sh
 script:
-    - cat ./script.sh | sh
-
+- cat ./script.sh | sh
 after_script:
-    - cat ./after_script.sh | sh
-
+- cat ./after_script.sh | sh
 env:
-    global:
-        secure: bQrYLSk6TpQ6fDohRNSRcWIj4VyjqPj41+kd2yf7VE4OMsVYLVuh2vPQDjfbk1s6PgZZ3uybMk3HQgpwI42NbuxDhpJotRwZDHNoNex9T6hHiAonpOu7WqjKz2cAUqj1Nk2YpcLwATHgb4R9+IjK2OG0nfR80MiLnrzBKrZicgP2k1r8azxKCpg7zz+lUwAnSBTyjK0XMhHJ2JCGFPy3To+04Lno2ifM8VioEdY6vjNFkuopGq5q3bQnK+fnSgc0xyfuBPX+eUiNxj0xJf5GMUNayWbeVT67lecGB9Q4sCbmG90SNkOhhmMUK6PMfVRM+/y6o/VFG7acDa/uP4CxPE/kzJDEE3QMu7otTC3PFAz+7QN2P89XMAARxlrRuN1nrKKsr1pn1+EelBT+bNO9GHevUMjI36pGocFf+g5kG7hfXAOWdHKqfILUCiPz43fUfhbgnp6ztRNUA7sLAnFvii06SvuzChM7NK7aZKrsx0Cu6ELgxut0HnonglMr5m82zqX0zXDCg3VinBTKumDvVrhQOcpdnyHX+9bNfk0yNQvkbSuKYStQCnolntwwd+hopt+IebDFZ7qswv8BvU4a3CmjiRkW7XKcQzGAL0SRSF2pypz6ZOQfHey5UMg7H3gS55Qg9as9u92p33/TA4zahUUqLidVHxv2mwGYzWSjJGI=
+  global:
+    secure: PV2KCBhgD7TaXD7IWMzWw49HYjbGKthJVYHaX5/PJNdznosjXIrd56fSSCWgIECJegVYxcZA9jU89qlSSfOLlDP2M6sZkS8gehKN5p8cT9EOnO5QvY3ksRPJnZ4XtfQXduUUNUyrV0bf1ZsbHpDlCbNC+lsf9fJTLd2OJ/GBa3fFgKL8TlZUS0yzClVGDIupzVrILgcAPnWGN8seoZ3m97tvja7i3oSTIAnqyorM9+vNLD1TQIql2MDmlyReqN+JFrPVjTIaIB9NVTW0QBJggrqp3MlJjOZBaffZ2zcjkw1B1KzkMTBtwIW28JwR8HYz6JRfVkl4IzCJJcTZ+40dSD0tV6qnnR34dPV4pxUxE4/Pxn1tnhu73zBQwGRTZ2x4faqDaqlNcruZaalYXoVgrj0ZFdOmeEQx2v7/mMG/+UTDklqmlY3QFhQr/pRo0jESM+sv/Cu3LLv1yEXCd31QuP1rqb/RSuyVM7IsroHNPhz0iaZhzKvUF0R3G9IMbhG5zPTTwmtIjuE6PyeFBQDv3cvwaXisiON1xI/ETLZm527W/RypWIitpuXl1tDsOEpSvSDKmBSYTgBh2r+ift9Z837Lqo97sKad+IUYkLlULmmvcv+snGVCee4l0sP+KXSrZwx0Lt49OvFDNza1xZf+IvXfMC8WjY5kFthpBC7ohv0=
