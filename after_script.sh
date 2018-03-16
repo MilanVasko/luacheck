@@ -16,7 +16,7 @@ mkdir -p $pkg_name
 cd $pkg_name
 
 echo "---" > index.md
-echo "package_name: ${$pkg_name}" >> index.md
+echo "package_name: ${pkg_name}" >> index.md
 echo "pages:" >> index.md
 echo "    - install" >> index.md
 echo "---" >> index.md
